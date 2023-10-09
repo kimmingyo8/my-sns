@@ -12,22 +12,24 @@ const PostBox = ({ post }: PostBoxProps) => {
 
   return (
     <li className="post__box" key={post?.id}>
-      <Link to={`/posts/${post?.id}`} className="post__box-main">
-        <div className="post__profile">
-          {post?.profileUrl ? (
-            <img
-              className="post__profile-img"
-              src={post?.profileUrl}
-              alt="프로필"
-            />
-          ) : (
-            <FaUserCircle className="post__profile-icon" />
-          )}
-          <p className="post__profile-email">{post?.email}</p>
-          <p className="post__profile-createdAt">{post?.createdAt}</p>
-        </div>
-        <p className="post__box-content">{post?.content}</p>
-      </Link>
+      <section className="post__box-main">
+        <Link to={`/posts/${post?.id}`}>
+          <div className="post__profile">
+            {post?.profileUrl ? (
+              <img
+                className="post__profile-img"
+                src={post?.profileUrl}
+                alt="프로필"
+              />
+            ) : (
+              <FaUserCircle className="post__profile-icon" />
+            )}
+            <p className="post__profile-email">{post?.email}</p>
+            <p className="post__profile-createdAt">{post?.createdAt}</p>
+          </div>
+          <p className="post__box-content">{post?.content}</p>
+        </Link>
+      </section>
       <div className="post__box-footer">
         {/* post.uid === user.uid */}
         <>

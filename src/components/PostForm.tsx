@@ -18,6 +18,7 @@ const PostForm = () => {
         <input
           type="file"
           name="file-input"
+          id="file-input"
           accept="image/*"
           onChange={handleFileUpload}
           className="hidden"
