@@ -35,6 +35,40 @@ body {
   border-right: 1px solid $border;
 }
 
+.footer {
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: transparent;
+  color: $white;
+
+  &__nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    background-color: transparent;
+
+    button {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      background-color: transparent;
+      padding: 16px 0;
+      backdrop-filter: blur(10px);
+
+      svg {
+        background: transparent;
+      }
+    }
+  }
+}
+
 .button {
   padding: 0.2rem 0.8rem;
   font-size: 12px;
