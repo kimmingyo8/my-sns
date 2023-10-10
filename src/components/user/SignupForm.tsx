@@ -107,7 +107,7 @@ const SignupForm = () => {
       </div>
       <button
         type="submit"
-        className="form__btn-submit"
+        className="form__btn--submit"
         disabled={error?.length > 0}
       >
         회원가입

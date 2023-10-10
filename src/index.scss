@@ -3,9 +3,9 @@ $activeBg: #2c3d5d40;
 $white: #fff;
 $border: #1b3358;
 $primaryColor: #9900ff;
-$activeColor: #bd83b8;
+$activeColor: #c56dffc0;
 $grayText: #9ca3af;
-$gray: #ababab;
+$gray: #c5c5c5;
 $grayDark: #ababab37;
 $danger: #eb5757;
 $dangerDark: #b44141;
@@ -224,5 +224,62 @@ body {
         }
       }
     }
+  }
+}
+
+// ----- sign form -------
+.form {
+  padding: 20px;
+
+  input {
+    height: 20px;
+    padding: 10px;
+    border-radius: 0.3rem;
+    border: 1px solid $grayText;
+    max-width: 680px;
+    width: 96%;
+  }
+
+  &__block {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+
+  &__link {
+    margin-left: 10px;
+    text-decoration: underline;
+    color: $grayText;
+    &:hover {
+      color: $gray;
+    }
+  }
+
+  &__btn--submit {
+    @extend .button;
+    margin-top: 25px;
+    width: 100%;
+    height: 48px;
+    font-weight: 600;
+    padding: 10px;
+    font-size: 18px;
+    color: $white;
+    background-color: $primaryColor;
+    &:hover {
+      background-color: $activeColor;
+    }
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    padding-bottom: 20px;
   }
 }
