@@ -2,6 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import { BsHouse } from 'react-icons/bs';
 import { BiUserCircle } from 'react-icons/bi';
 import { MdLogout } from 'react-icons/md';
+import { getAuth, signOut } from 'firebase/auth';
+import { app } from 'firebaseApp';
+import { toast } from 'react-toastify';
 
 const MenuList = () => {
   const navigate = useNavigate();
@@ -16,7 +19,14 @@ const MenuList = () => {
           <BiUserCircle />
           Profile
         </button>
-        <button onClick={() => navigate('/')} type="button">
+        <button
+          onClick={async () => {
+            const auth = getAuth(app);
+            await signOut(auth);
+            toast.success('로그아웃 되었습니다');
+          }}
+          type="button"
+        >
           <MdLogout />
           Logout
         </button>

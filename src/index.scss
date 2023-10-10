@@ -282,4 +282,8 @@ body {
     font-weight: 700;
     padding-bottom: 20px;
   }
+
+  &__error {
+    color: $danger;
+  }
 }
