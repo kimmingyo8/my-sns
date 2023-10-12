@@ -78,16 +78,33 @@ body {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
+.transparent {
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+}
+
+.sticky {
+  width: 100%;
+  position: sticky;
+  max-width: 600px;
+  margin: 0 auto;
+  top: 0;
+}
+
 // -------- home ---------
 .home {
+  @extend .transparent;
+  @extend .sticky;
+
   &__title {
+    @extend .transparent;
     padding: 16px;
     font-weight: 700;
     font-size: 26px;
   }
 
   &__tabs {
-    width: 100%;
+    @extend .transparent;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -96,6 +113,7 @@ body {
     text-align: center;
     font-weight: 500;
     padding: 16px;
+    font-size: 16px;
     cursor: pointer;
 
     &--active {
@@ -229,7 +247,7 @@ body {
 
 // ----- sign form -------
 .form {
-  padding: 20px;
+  padding: 0 20px;
 
   input {
     height: 20px;
@@ -280,10 +298,33 @@ body {
     text-align: center;
     font-size: 24px;
     font-weight: 700;
-    padding-bottom: 20px;
+    padding: 20px;
   }
 
   &__error {
     color: $danger;
+  }
+
+  &__btn--google {
+    @extend .form__btn--submit;
+    background-color: $white;
+    color: $primaryColor;
+
+    &:hover {
+      background-color: $white;
+      opacity: 0.8;
+    }
+  }
+
+  &__btn--github {
+    @extend .form__btn--submit;
+    background-color: black;
+    color: $white;
+    border: 1px solid $border;
+
+    &:hover {
+      background-color: black;
+      opacity: 0.7;
+    }
   }
 }

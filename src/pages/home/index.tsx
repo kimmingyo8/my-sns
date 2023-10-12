@@ -60,20 +60,24 @@ const posts: PostProps[] = [
 
 const HomePage = () => {
   return (
-    <main>
-      <h1 className="home__title">Home</h1>
-      <ul className="home__tabs">
-        <li className="home__tab home__tab--active">게시글</li>
-        <li className="home__tab">팔로잉</li>
-      </ul>
-      <PostForm />
-      {/* posts */}
-      <ul className="post">
-        {posts?.map((post) => (
-          <PostBox post={post} key={post?.id} />
-        ))}
-      </ul>
-    </main>
+    <>
+      <header className="home">
+        <h1 className="home__title">Home</h1>
+        <nav className="home__tabs">
+          <button className="home__tab home__tab--active">게시글</button>
+          <button className="home__tab">팔로잉</button>
+        </nav>
+      </header>
+      <main>
+        <PostForm />
+        {/* posts */}
+        <ul className="post">
+          {posts?.map((post) => (
+            <PostBox post={post} key={post?.id} />
+          ))}
+        </ul>
+      </main>
+    </>
   );
 };
 
