@@ -11,7 +11,7 @@ const PostBox = ({ post }: PostBoxProps) => {
   const handleDelete = () => {};
 
   return (
-    <li className="post__box" key={post?.id}>
+    <article className="post__box" key={post?.id}>
       <section className="post__box-main">
         <Link to={`/posts/${post?.id}`}>
           <div className="post__profile">
@@ -30,7 +30,7 @@ const PostBox = ({ post }: PostBoxProps) => {
           <p className="post__box-content">{post?.content}</p>
         </Link>
       </section>
-      <div className="post__box-footer">
+      <section className="post__box-footer">
         {/* post.uid === user.uid */}
         <>
           <button type="button" className="post__delete" onClick={handleDelete}>
@@ -48,8 +48,8 @@ const PostBox = ({ post }: PostBoxProps) => {
           <FaRegComment />
           {post?.comments?.length || 0}
         </button>
-      </div>
-    </li>
+      </section>
+    </article>
   );
 };
 

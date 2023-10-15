@@ -245,6 +245,17 @@ body {
   }
 }
 
+.no-post {
+  padding: 30px;
+  &__text {
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid $grayText;
+    padding: 20px;
+    border-radius: 4px;
+  }
+}
+
 // ----- sign form -------
 .form {
   padding: 0 20px;
