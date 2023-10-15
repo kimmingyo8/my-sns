@@ -7,6 +7,9 @@ import { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import Loader from 'components/loader/Loader';
 
+// toasty 제대로 뜨지 않을때 추가
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   const auth = getAuth(app);
   const [init, setInit] = useState<boolean>(false);
