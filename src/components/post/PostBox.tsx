@@ -2,12 +2,15 @@ import { FaRegComment, FaUserCircle } from 'react-icons/fa';
 import { AiFillHeart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { PostProps } from 'pages/home';
+import { useContext } from 'react';
+import AuthContext from 'context/AuthContext';
 
 interface PostBoxProps {
   post: PostProps;
 }
 
 const PostBox = ({ post }: PostBoxProps) => {
+  const { user } = useContext(AuthContext);
   const handleDelete = () => {};
 
   return (
@@ -31,15 +34,20 @@ const PostBox = ({ post }: PostBoxProps) => {
         </Link>
       </section>
       <section className="post__box-footer">
-        {/* post.uid === user.uid */}
-        <>
-          <button type="button" className="post__delete" onClick={handleDelete}>
-            삭제
-          </button>
-          <button type="button" className="post__edit">
-            <Link to={`/posts/edit/${post?.id}`}>수정</Link>
-          </button>
-        </>
+        {user?.uid === post?.uid && (
+          <>
+            <button
+              type="button"
+              className="post__delete"
+              onClick={handleDelete}
+            >
+              삭제
+            </button>
+            <button type="button" className="post__edit">
+              <Link to={`/posts/edit/${post?.id}`}>수정</Link>
+            </button>
+          </>
+        )}
         <button type="button" className="post__likes">
           <AiFillHeart />
           {post?.likeCount || 0}

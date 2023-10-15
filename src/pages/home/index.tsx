@@ -1,6 +1,9 @@
 import PostBox from 'components/post/PostBox';
 import PostForm from 'components/post/PostForm';
-import { useState } from 'react';
+import AuthContext from 'context/AuthContext';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { db } from 'firebaseApp';
+import { useContext, useEffect, useState } from 'react';
 
 export interface PostProps {
   id: string;
@@ -16,6 +19,23 @@ export interface PostProps {
 
 const HomePage = () => {
   const [posts, setPosts] = useState<PostProps[]>([]);
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (user) {
+      let postsRef = collection(db, 'posts');
+      let postQuery = query(postsRef, orderBy('createdAt', 'desc'));
+
+      onSnapshot(postQuery, (snapShot) => {
+        let dataObj = snapShot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc?.id,
+        }));
+        setPosts(dataObj as PostProps[]);
+      });
+    }
+  });
+
   return (
     <>
       <header className="home">
