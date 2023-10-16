@@ -4,6 +4,7 @@ $white: #fff;
 $border: #1b3358;
 $primaryColor: #9900ff;
 $activeColor: #c56dffc0;
+$tagColor: #dfafff;
 $grayText: #9ca3af;
 $gray: #c5c5c5;
 $grayDark: #ababab37;
@@ -129,6 +130,39 @@ body {
 }
 
 .post-form {
+  &__hashtags {
+    padding: 16px;
+    border-bottom: 1px solid $border;
+
+    &-tag {
+      font-size: 14px;
+      border: 1px solid $tagColor;
+      color: $tagColor;
+      line-height: 15px;
+      border-radius: 14px;
+      padding: 4px 8px;
+      margin-right: 8px;
+
+      &:hover {
+        color: $activeColor;
+        border: 1px solid $activeColor;
+      }
+    }
+
+    &-outputs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 1px;
+      align-items: center;
+    }
+
+    &-input {
+      font-family: $font;
+      padding: 8px;
+      margin-top: 8px;
+      width: calc(100% - 32px);
+    }
+  }
   &__textarea {
     min-height: 120px;
     padding: 16px;
@@ -166,6 +200,18 @@ body {
 // ----- post -------
 .post {
   padding-bottom: 40px;
+
+  &__header {
+    button {
+      border: none;
+      padding: 16px;
+    }
+
+    &-btn {
+      width: 20px;
+      height: 20px;
+    }
+  }
 
   &__profile {
     display: flex;
