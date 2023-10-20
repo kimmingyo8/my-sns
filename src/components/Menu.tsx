@@ -5,6 +5,7 @@ import { MdLogout } from 'react-icons/md';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from 'firebaseApp';
 import { toast } from 'react-toastify';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 const MenuList = () => {
   const navigate = useNavigate();
@@ -18,6 +19,10 @@ const MenuList = () => {
         <button onClick={() => navigate('/profile')} type="button">
           <BiUserCircle />
           Profile
+        </button>
+        <button onClick={() => navigate('/search')} type="button">
+          <AiOutlineSearch />
+          Search
         </button>
         <button
           onClick={async () => {

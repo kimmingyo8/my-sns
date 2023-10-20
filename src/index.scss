@@ -1,6 +1,7 @@
 $background: #06142e;
 $activeBg: #2c3d5d40;
 $white: #fff;
+$backgroundLight: #232847;
 $border: #1b3358;
 $primaryColor: #9900ff;
 $activeColor: #c56dffc0;
@@ -50,7 +51,7 @@ body {
 
   &__nav {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     background-color: transparent;
 
     button {
@@ -97,8 +98,30 @@ body {
   @extend .transparent;
   @extend .sticky;
 
+  &__search {
+    padding: 16px 26px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    width: calc(100% - 120px);
+    background-color: $backgroundLight;
+    border-radius: 30px;
+    font-family: $font;
+    font-size: 16px;
+
+    &:focus {
+      border: 1px solid $primaryColor;
+      background-color: $activeBg;
+    }
+
+    &-div {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
   &__title {
     @extend .transparent;
+    width: 90%;
     padding: 16px;
     font-weight: 700;
     font-size: 26px;
@@ -155,14 +178,15 @@ body {
       gap: 8px 1px;
       align-items: center;
     }
-
-    &-input {
-      font-family: $font;
-      padding: 8px;
-      margin-top: 8px;
-      width: calc(100% - 32px);
-    }
   }
+
+  &__input {
+    font-family: $font;
+    padding: 8px;
+    margin-top: 8px;
+    width: calc(100% - 32px);
+  }
+
   &__textarea {
     min-height: 120px;
     padding: 16px;

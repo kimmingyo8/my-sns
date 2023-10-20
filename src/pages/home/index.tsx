@@ -48,7 +48,6 @@ const HomePage = () => {
       </header>
       <main>
         <PostForm />
-        {/* posts */}
         <div className="post">
           {posts?.length > 0 ? (
             posts?.map((post) => <PostBox post={post} key={post?.id} />)

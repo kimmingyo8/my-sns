@@ -97,7 +97,7 @@ const PostForm = () => {
         </label>
         <input
           type="text"
-          className="post-form__hashtags-input"
+          className="post-form__input"
           name="hashtag"
           id="hashtag"
           placeholder="해시태그 + 스페이스바 입력"
