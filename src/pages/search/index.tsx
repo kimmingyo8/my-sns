@@ -40,11 +40,11 @@ const SearchPage = () => {
     }
   }, [tagQuery, user]);
   return (
-    <div className="home">
-      <div className="home__top">
-        <div className="home__title">
-          <div className="home__title-text">Search</div>
-        </div>
+    <>
+      <header className="home__title">
+        <h1 className="home__title-text">Search</h1>
+      </header>
+      <main className="home">
         <div className="home__search-div">
           <input
             type="text"
@@ -53,17 +53,17 @@ const SearchPage = () => {
             onChange={onChange}
           />
         </div>
-      </div>
-      <div className="post">
-        {posts?.length > 0 ? (
-          posts?.map((post) => <PostBox post={post} key={post?.id} />)
-        ) : (
-          <article className="no-post">
-            <p className="no-post__text">게시글이 없습니다.</p>
-          </article>
-        )}
-      </div>
-    </div>
+        <div className="post">
+          {posts?.length > 0 ? (
+            posts?.map((post) => <PostBox post={post} key={post?.id} />)
+          ) : (
+            <div className="no-post">
+              <p className="no-post__text">게시글이 없습니다.</p>
+            </div>
+          )}
+        </div>
+      </main>
+    </>
   );
 };
 
