@@ -43,6 +43,17 @@ const PostBox = ({ post }: PostBoxProps) => {
             <p className="post__profile-createdAt">{post?.createdAt}</p>
           </div>
           <p className="post__box-content">{post?.content}</p>
+          {post?.imageUrl && (
+            <div className="post__image-div">
+              <img
+                src={post?.imageUrl}
+                alt="게시글 이미지"
+                className="post__image"
+                width={100}
+                height={100}
+              />
+            </div>
+          )}
           <ul className="post-form__hashtags-outputs">
             {post?.hashTags?.map((tag, index) => (
               <li className="post-form__hashtags-tag" key={index}>

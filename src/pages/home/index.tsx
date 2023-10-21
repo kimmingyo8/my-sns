@@ -16,6 +16,7 @@ export interface PostProps {
   likeCount?: number;
   comments?: any;
   hashTags?: string[];
+  imageUrl?: string;
 }
 
 const HomePage = () => {
@@ -52,9 +53,9 @@ const HomePage = () => {
           {posts?.length > 0 ? (
             posts?.map((post) => <PostBox post={post} key={post?.id} />)
           ) : (
-            <article className="no-post">
+            <div className="no-post">
               <p className="no-post__text">게시글이 없습니다.</p>
-            </article>
+            </div>
           )}
         </div>
       </main>
