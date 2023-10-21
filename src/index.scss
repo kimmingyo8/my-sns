@@ -177,6 +177,7 @@ body {
 
   &__hashtags {
     padding: 16px;
+    padding-top: 0;
     border-bottom: 1px solid $border;
 
     &-tag {
@@ -199,6 +200,7 @@ body {
       flex-wrap: wrap;
       gap: 8px 1px;
       align-items: center;
+      margin: 16px 0;
     }
   }
 
@@ -248,7 +250,7 @@ body {
   padding-bottom: 40px;
 
   &__image-div {
-    padding: 0 16px 16px 16px;
+    padding: 0 16px;
   }
 
   &__header {
