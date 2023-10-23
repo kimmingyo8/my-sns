@@ -14,26 +14,43 @@ import { useNavigate } from 'react-router-dom';
 
 const PROFILE_DEFULT_URL = '/profile.png';
 
+type TabType = 'my' | 'like';
+
 const ProfilePage = () => {
-  const [posts, setPosts] = useState<PostProps[]>([]);
+  const [activeTab, setactiveTab] = useState<TabType>('my');
+  const [myPosts, setMyPosts] = useState<PostProps[]>([]);
+  const [likePosts, setLikePosts] = useState<PostProps[]>([]);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
     if (user) {
       let postsRef = collection(db, 'posts');
-      let postsQuery = query(
+      const myPostsQuery = query(
         postsRef,
         where('uid', '==', user.uid),
         orderBy('createdAt', 'desc'),
       );
+      const likePostsQuery = query(
+        postsRef,
+        where('likes', 'array-contains', user.uid),
+        orderBy('createdAt', 'desc'),
+      );
 
-      onSnapshot(postsQuery, (snapShot) => {
+      onSnapshot(myPostsQuery, (snapShot) => {
         let dataObj = snapShot.docs.map((doc) => ({
           ...doc.data(),
           id: doc?.id,
         }));
-        setPosts(dataObj as PostProps[]);
+        setMyPosts(dataObj as PostProps[]);
+      });
+
+      onSnapshot(likePostsQuery, (snapShot) => {
+        let dataObj = snapShot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc?.id,
+        }));
+        setLikePosts(dataObj as PostProps[]);
       });
     }
   });
@@ -67,15 +84,43 @@ const ProfilePage = () => {
           <div className="profile__email">{user?.email}</div>
         </div>
         <nav className="home__tabs">
-          <button className="home__tab home__tab--active">내가 쓴 글</button>
-          <button className="home__tab">좋아요</button>
+          <button
+            className={`home__tab ${activeTab === 'my' && 'home__tab--active'}`}
+            onClick={() => setactiveTab('my')}
+          >
+            내가 쓴 글
+          </button>
+          <button
+            className={`home__tab ${
+              activeTab === 'like' && 'home__tab--active'
+            }`}
+            onClick={() => setactiveTab('like')}
+          >
+            좋아요
+          </button>
         </nav>
-        {posts?.length > 0 ? (
-          posts?.map((post) => <PostBox post={post} key={post.id} />)
-        ) : (
-          <div className="no-post">
-            <p className="no-post__text">게시글이 없습니다.</p>
-          </div>
+        {activeTab === 'my' && (
+          <>
+            {myPosts?.length > 0 ? (
+              myPosts?.map((post) => <PostBox post={post} key={post.id} />)
+            ) : (
+              <div className="no-post">
+                <p className="no-post__text">게시글이 없습니다.</p>
+              </div>
+            )}
+          </>
+        )}
+
+        {activeTab === 'like' && (
+          <>
+            {likePosts?.length > 0 ? (
+              likePosts?.map((post) => <PostBox post={post} key={post.id} />)
+            ) : (
+              <div className="no-post">
+                <p className="no-post__text">게시글이 없습니다.</p>
+              </div>
+            )}
+          </>
         )}
       </main>
     </>

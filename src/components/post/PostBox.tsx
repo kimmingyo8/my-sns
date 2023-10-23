@@ -1,10 +1,16 @@
 import { FaRegComment, FaUserCircle } from 'react-icons/fa';
-import { AiFillHeart } from 'react-icons/ai';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import { PostProps } from 'pages/home';
 import { useContext } from 'react';
 import AuthContext from 'context/AuthContext';
-import { deleteDoc, doc } from 'firebase/firestore';
+import {
+  arrayRemove,
+  arrayUnion,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from 'firebase/firestore';
 import { db, storage } from 'firebaseApp';
 import { toast } from 'react-toastify';
 import { deleteObject, ref } from 'firebase/storage';
@@ -17,6 +23,24 @@ const PostBox = ({ post }: PostBoxProps) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const imageRef = ref(storage, post?.imageUrl);
+
+  const toggleLike = async () => {
+    const postRef = doc(db, 'posts', post.id);
+
+    if (user?.uid && post?.likes?.includes(user?.uid)) {
+      // 사용자가 좋아요 해 놓은 경우 -> 취소
+      await updateDoc(postRef, {
+        likes: arrayRemove(user?.uid),
+        likeCount: post?.likeCount ? post?.likeCount - 1 : 0,
+      });
+    } else {
+      // 좋아요 하지 않은 경우 -> 추가
+      await updateDoc(postRef, {
+        likes: arrayUnion(user?.uid),
+        likeCount: post?.likeCount ? post?.likeCount + 1 : 1,
+      });
+    }
+  };
 
   const handleDelete = async () => {
     const confirm = window.confirm('해당 게시글을 삭제하시겠습니까?');
@@ -84,8 +108,12 @@ const PostBox = ({ post }: PostBoxProps) => {
             </button>
           </>
         )}
-        <button type="button" className="post__likes">
-          <AiFillHeart />
+        <button type="button" className="post__likes" onClick={toggleLike}>
+          {user && post?.likes?.includes(user.uid) ? (
+            <AiFillHeart />
+          ) : (
+            <AiOutlineHeart />
+          )}
           {post?.likeCount || 0}
         </button>
         <button type="button" className="post__comments">
