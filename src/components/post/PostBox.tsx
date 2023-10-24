@@ -14,6 +14,7 @@ import {
 import { db, storage } from 'firebaseApp';
 import { toast } from 'react-toastify';
 import { deleteObject, ref } from 'firebase/storage';
+import FollowingBox from 'components/following/FollowingBox';
 
 interface PostBoxProps {
   post: PostProps;
@@ -58,20 +59,21 @@ const PostBox = ({ post }: PostBoxProps) => {
   return (
     <article className="post__box" key={post?.id}>
       <section className="post__box-main">
+        <div className="post__profile">
+          {post?.profileUrl ? (
+            <img
+              className="post__profile-img"
+              src={post?.profileUrl}
+              alt="프로필"
+            />
+          ) : (
+            <FaUserCircle className="post__profile-icon" />
+          )}
+          <p className="post__profile-email">{post?.email}</p>
+          <p className="post__profile-createdAt">{post?.createdAt}</p>
+          <FollowingBox post={post} />
+        </div>
         <Link to={`/posts/${post?.id}`}>
-          <div className="post__profile">
-            {post?.profileUrl ? (
-              <img
-                className="post__profile-img"
-                src={post?.profileUrl}
-                alt="프로필"
-              />
-            ) : (
-              <FaUserCircle className="post__profile-icon" />
-            )}
-            <p className="post__profile-email">{post?.email}</p>
-            <p className="post__profile-createdAt">{post?.createdAt}</p>
-          </div>
           <p className="post__box-content">{post?.content}</p>
           {post?.imageUrl && (
             <div className="post__image-div">

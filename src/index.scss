@@ -370,6 +370,30 @@ body {
       }
     }
   }
+
+  &__following-btn {
+    margin-top: 2px;
+    @extend .button;
+    background-color: $white;
+    color: $primaryColor;
+    margin-left: auto;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &__follow-btn {
+    margin-top: 2px;
+    @extend .button;
+    background-color: $activeColor;
+    color: $white;
+    margin-left: auto;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }
 
 .no-post {
