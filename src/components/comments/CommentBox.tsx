@@ -32,7 +32,7 @@ const CommentBox = ({ data, post }: CommentBoxProps) => {
       }
     }
   };
-  console.log(data);
+
   return (
     <li key={data?.createdAt} className={styles.comment}>
       <div className={styles.comment__infoBox}>
