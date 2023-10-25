@@ -6,6 +6,7 @@ import { getAuth, signOut } from 'firebase/auth';
 import { app } from 'firebaseApp';
 import { toast } from 'react-toastify';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { IoMdNotificationsOutline } from 'react-icons/io';
 
 const MenuList = () => {
   const navigate = useNavigate();
@@ -13,16 +14,19 @@ const MenuList = () => {
     <footer className="footer">
       <nav className="footer__nav">
         <button onClick={() => navigate('/')} type="button">
-          <BsHouse />
-          Home
+          <BsHouse />홈
         </button>
         <button onClick={() => navigate('/profile')} type="button">
           <BiUserCircle />
-          Profile
+          프로필
+        </button>
+        <button onClick={() => navigate('/notifications')} type="button">
+          <IoMdNotificationsOutline />
+          알림
         </button>
         <button onClick={() => navigate('/search')} type="button">
           <AiOutlineSearch />
-          Search
+          검색
         </button>
         <button
           onClick={async () => {
