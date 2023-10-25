@@ -1,44 +1,58 @@
 import { useNavigate } from 'react-router-dom';
 import { BsHouse } from 'react-icons/bs';
 import { BiUserCircle } from 'react-icons/bi';
-import { MdLogout } from 'react-icons/md';
+import { MdLogin, MdLogout } from 'react-icons/md';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from 'firebaseApp';
 import { toast } from 'react-toastify';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { IoMdNotificationsOutline } from 'react-icons/io';
+import useTranslation from 'hooks/useTranslation';
+import AuthContext from 'context/AuthContext';
+import { useContext } from 'react';
 
 const MenuList = () => {
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const trans = useTranslation();
+
   return (
     <footer className="footer">
       <nav className="footer__nav">
         <button onClick={() => navigate('/')} type="button">
-          <BsHouse />홈
+          <BsHouse />
+          {trans('MENU_HOME')}
         </button>
-        <button onClick={() => navigate('/profile')} type="button">
+        <button type="button" onClick={() => navigate('/profile')}>
           <BiUserCircle />
-          프로필
+          {trans('MENU_PROFILE')}
         </button>
-        <button onClick={() => navigate('/notifications')} type="button">
-          <IoMdNotificationsOutline />
-          알림
-        </button>
-        <button onClick={() => navigate('/search')} type="button">
+        <button type="button" onClick={() => navigate('/search')}>
           <AiOutlineSearch />
-          검색
+          {trans('MENU_SEARCH')}
         </button>
-        <button
-          onClick={async () => {
-            const auth = getAuth(app);
-            await signOut(auth);
-            toast.success('로그아웃 되었습니다');
-          }}
-          type="button"
-        >
-          <MdLogout />
-          Logout
+        <button type="button" onClick={() => navigate('/notifications')}>
+          <IoMdNotificationsOutline />
+          {trans('MENU_NOTI')}
         </button>
+        {user === null ? (
+          <button type="button" onClick={() => navigate('/users/login')}>
+            <MdLogin />
+            {trans('MENU_LOGIN')}
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={async () => {
+              const auth = getAuth(app);
+              await signOut(auth);
+              toast.success('로그아웃 되었습니다.');
+            }}
+          >
+            <MdLogout />
+            {trans('MENU_LOGOUT')}
+          </button>
+        )}
       </nav>
     </footer>
   );

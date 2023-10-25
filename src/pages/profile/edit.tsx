@@ -8,6 +8,7 @@ import {
   uploadString,
 } from 'firebase/storage';
 import { storage } from 'firebaseApp';
+import useTranslation from 'hooks/useTranslation';
 import { useContext, useEffect, useState } from 'react';
 import { FiImage } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
@@ -19,6 +20,8 @@ const ProfileEditPage = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const trans = useTranslation();
+
   const STORAGE_DOWNLOAD_URL_STR = 'https://firebasestorage.googleapis.com';
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,7 +87,6 @@ const ProfileEditPage = () => {
   };
 
   useEffect(() => {
-    console.log(user);
     if (user?.photoURL) {
       setImageUrl(user?.photoURL);
     }
@@ -114,7 +116,7 @@ const ProfileEditPage = () => {
                     onClick={handleDeleteImage}
                     className="post-form__clear-btn"
                   >
-                    삭제
+                    {trans('BUTTON_DELETE')}
                   </button>
                 </>
               )}
@@ -143,7 +145,9 @@ const ProfileEditPage = () => {
               className="hidden"
               onChange={handleFileUpload}
             />
-            <button className="post-form__submit-btn">프로필 수정</button>
+            <button className="post-form__submit-btn">
+              {trans('BUTTON_EDIT_PROFILE')}
+            </button>
           </div>
         </form>
       </main>

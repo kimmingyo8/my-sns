@@ -6,6 +6,7 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import { app } from 'firebaseApp';
+import useTranslation from 'hooks/useTranslation';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -16,6 +17,7 @@ const SignupForm = () => {
   const [password, setPassword] = useState<string>('');
   const [passwordConfirm, setPasswordConfirm] = useState<string>('');
   const navigate = useNavigate();
+  const trans = useTranslation();
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -94,11 +96,11 @@ const SignupForm = () => {
   return (
     <>
       <header>
-        <h1 className="form__title">회원가입</h1>
+        <h1 className="form__title">{trans('MENU_SIGNUP')}</h1>
       </header>
       <form className="form form--lg" onSubmit={onSubmit}>
         <div className="form__block">
-          <label htmlFor="email">이메일</label>
+          <label htmlFor="email">{trans('FORM_EMAIL')}</label>
           <input
             type="text"
             name="email"
@@ -109,7 +111,7 @@ const SignupForm = () => {
           />
         </div>
         <div className="form__block">
-          <label htmlFor="password">비밀번호</label>
+          <label htmlFor="password">{trans('FORM_PASSWORD')}</label>
           <input
             type="password"
             name="password"
@@ -120,7 +122,9 @@ const SignupForm = () => {
           />
         </div>
         <div className="form__block">
-          <label htmlFor="password_confirm">비밀번호 확인</label>
+          <label htmlFor="password_confirm">
+            {trans('FORM_PASSWORD_CHECK')}
+          </label>
           <input
             type="password"
             name="password_confirm"
@@ -136,9 +140,9 @@ const SignupForm = () => {
           </div>
         )}
         <div className="form__block">
-          계정이 있으신가요?
+          {trans('YES_ACCOUNT')}
           <Link to="users/login" className="form__link">
-            로그인하기
+            {trans('SIGNIN_LINK')}
           </Link>
         </div>
         <button
@@ -146,7 +150,7 @@ const SignupForm = () => {
           className="form__btn--submit"
           disabled={error?.length > 0}
         >
-          회원가입
+          {trans('MENU_SIGNUP')}
         </button>
         <button
           type="button"
@@ -154,7 +158,7 @@ const SignupForm = () => {
           className="form__btn--google"
           onClick={onClickSocialLogin}
         >
-          Google로 회원가입
+          {trans('SIGNUP_GOOGLE')}
         </button>
         <button
           type="button"
@@ -162,7 +166,7 @@ const SignupForm = () => {
           className="form__btn--github"
           onClick={onClickSocialLogin}
         >
-          Github으로 회원가입
+          {trans('SIGNUP_GITHUB')}
         </button>
       </form>
     </>

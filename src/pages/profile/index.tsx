@@ -9,6 +9,7 @@ import {
   where,
 } from 'firebase/firestore';
 import { db } from 'firebaseApp';
+import useTranslation from 'hooks/useTranslation';
 import { PostProps } from 'pages/home';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -25,6 +26,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const [language, setLanguage] = useRecoilState(languageState);
+  const trans = useTranslation();
 
   const onClickLanguage = () => {
     setLanguage(language === 'ko' ? 'en' : 'ko');
@@ -66,7 +68,7 @@ const ProfilePage = () => {
   return (
     <>
       <header className="home">
-        <h1 className="home__title">Profile</h1>
+        <h1 className="home__title">{trans('MENU_PROFILE')}</h1>
       </header>
       <main className="post">
         <div className="profile">
@@ -85,7 +87,7 @@ const ProfilePage = () => {
                 navigate('/profile/edit');
               }}
             >
-              프로필 수정
+              {trans('BUTTON_EDIT_PROFILE')}
             </button>
             <button
               type="button"
@@ -105,7 +107,7 @@ const ProfilePage = () => {
             className={`home__tab ${activeTab === 'my' && 'home__tab--active'}`}
             onClick={() => setactiveTab('my')}
           >
-            내가 쓴 글
+            {trans('TAB_MY')}
           </button>
           <button
             className={`home__tab ${
@@ -113,7 +115,7 @@ const ProfilePage = () => {
             }`}
             onClick={() => setactiveTab('like')}
           >
-            좋아요
+            {trans('TAB_LIKES')}
           </button>
         </nav>
         {activeTab === 'my' && (

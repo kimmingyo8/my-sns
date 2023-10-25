@@ -10,6 +10,7 @@ import {
   where,
 } from 'firebase/firestore';
 import { db } from 'firebaseApp';
+import useTranslation from 'hooks/useTranslation';
 import { useCallback, useContext, useEffect, useState } from 'react';
 
 export interface PostProps {
@@ -38,6 +39,7 @@ const HomePage = () => {
   const [followingIds, setFollowingIds] = useState<string[]>(['']);
   const [activeTab, setActiveTab] = useState<tabType>('all');
   const { user } = useContext(AuthContext);
+  const trans = useTranslation();
 
   // 실시간 동기화로 user의 팔로잉 id 배열 가져오기
   const getFollowingIds = useCallback(async () => {
@@ -91,7 +93,7 @@ const HomePage = () => {
   return (
     <>
       <header className="home">
-        <h1 className="home__title">Home</h1>
+        <h1 className="home__title">{trans('MENU_HOME')}</h1>
         <nav className="home__tabs">
           <button
             className={`home__tab ${
@@ -99,7 +101,7 @@ const HomePage = () => {
             }`}
             onClick={() => setActiveTab('all')}
           >
-            전체
+            {trans('TAB_ALL')}
           </button>
           <button
             className={`home__tab ${
@@ -109,7 +111,7 @@ const HomePage = () => {
               setActiveTab('following');
             }}
           >
-            팔로잉
+            {trans('TAB_FOLLOWING')}
           </button>
         </nav>
       </header>
@@ -121,7 +123,7 @@ const HomePage = () => {
               posts?.map((post) => <PostBox post={post} key={post?.id} />)
             ) : (
               <div className="no-post">
-                <p className="no-post__text">게시글이 없습니다.</p>
+                <p className="no-post__text">{trans('NO_POSTS')}</p>
               </div>
             )}
           </div>
@@ -134,7 +136,7 @@ const HomePage = () => {
               ))
             ) : (
               <div className="no-post">
-                <p className="no-post__text">게시글이 없습니다.</p>
+                <p className="no-post__text">{trans('NO_POSTS')}</p>
               </div>
             )}
           </div>

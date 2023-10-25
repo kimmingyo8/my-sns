@@ -7,6 +7,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { db } from 'firebaseApp';
+import useTranslation from 'hooks/useTranslation';
 import { PostProps } from 'pages/home';
 import { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -17,6 +18,7 @@ interface CommentFormProps {
 const CommentForm = ({ post }: CommentFormProps) => {
   const [comment, setComment] = useState<string>('');
   const { user } = useContext(AuthContext);
+  const trans = useTranslation();
 
   const truncate = (str: string) => {
     return str?.length > 10 ? str?.substring(0, 10) + '...' : str;
@@ -81,7 +83,7 @@ const CommentForm = ({ post }: CommentFormProps) => {
         name="comment"
         id="comment"
         required
-        placeholder="댓글을 남겨보세요."
+        placeholder={trans('COMMENT_PLACEHOLDER')}
         className="post-form__textarea"
         onChange={onChange}
         value={comment}
@@ -89,7 +91,7 @@ const CommentForm = ({ post }: CommentFormProps) => {
       <div className="post-form__submit-area">
         <div />
         <button className="post-form__submit-btn" disabled={!comment}>
-          댓글
+          {trans('BUTTON_COMMENT')}
         </button>
       </div>
     </form>

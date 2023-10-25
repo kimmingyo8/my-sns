@@ -2,6 +2,7 @@ import AuthContext from 'context/AuthContext';
 import { addDoc, collection } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
 import { db, storage } from 'firebaseApp';
+import useTranslation from 'hooks/useTranslation';
 import { useContext, useState } from 'react';
 import { FiImage } from 'react-icons/fi';
 import { toast } from 'react-toastify';
@@ -14,6 +15,7 @@ const PostForm = () => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [imageFile, setImageFile] = useState<string | null>(null);
   const { user } = useContext(AuthContext);
+  const trans = useTranslation();
 
   const handleFileUpload = (e: any) => {
     const { files } = e.target;
@@ -109,7 +111,7 @@ const PostForm = () => {
         className="post-form__textarea"
         name="content"
         id="content"
-        placeholder="오늘 하루를 기록하세요!"
+        placeholder={trans('POST_PLACEHOLDER')}
         onChange={onChange}
         value={content}
       />
@@ -134,7 +136,7 @@ const PostForm = () => {
           className="post-form__input"
           name="hashtag"
           id="hashtag"
-          placeholder="해시태그 + 스페이스바 입력"
+          placeholder={trans('POST_HASHTAG')}
           onChange={onChangeHashTag}
           onKeyUp={handleKeyUp}
           value={hashTag}
@@ -161,13 +163,13 @@ const PostForm = () => {
                 type="button"
                 onClick={handleDeleteImage}
               >
-                삭제
+                {trans('BUTTON_DELETE')}
               </button>
             </div>
           )}
         </div>
         <button className="post-form__submit-btn" disabled={isSubmitting}>
-          작성
+          {trans('BUTTON_SUBMIT')}
         </button>
       </div>
     </form>
