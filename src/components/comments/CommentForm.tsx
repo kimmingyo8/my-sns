@@ -54,7 +54,10 @@ const CommentForm = ({ post }: CommentFormProps) => {
             }),
             uid: post?.uid,
             isRead: false,
-            url: `"${truncate(post?.content)}" 글에 댓글이 작성 되었습니다.`,
+            url: `posts/${post?.id}`,
+            content: `"${truncate(
+              post?.content,
+            )}" 글에 댓글이 작성 되었습니다.`,
           });
         }
 
