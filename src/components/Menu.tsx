@@ -21,24 +21,24 @@ const MenuList = () => {
       <nav className="footer__nav">
         <button onClick={() => navigate('/')} type="button">
           <BsHouse />
-          {trans('MENU_HOME')}
+          <span className="footer__nav-txt">{trans('MENU_HOME')}</span>
         </button>
         <button type="button" onClick={() => navigate('/profile')}>
           <BiUserCircle />
-          {trans('MENU_PROFILE')}
+          <span className="footer__nav-txt">{trans('MENU_PROFILE')}</span>
         </button>
         <button type="button" onClick={() => navigate('/search')}>
           <AiOutlineSearch />
-          {trans('MENU_SEARCH')}
+          <span className="footer__nav-txt"> {trans('MENU_SEARCH')}</span>
         </button>
         <button type="button" onClick={() => navigate('/notifications')}>
           <IoMdNotificationsOutline />
-          {trans('MENU_NOTI')}
+          <span className="footer__nav-txt">{trans('MENU_NOTI')}</span>
         </button>
         {user === null ? (
           <button type="button" onClick={() => navigate('/users/login')}>
             <MdLogin />
-            {trans('MENU_LOGIN')}
+            <span className="footer__nav-txt">{trans('MENU_LOGIN')}</span>
           </button>
         ) : (
           <button
@@ -50,7 +50,7 @@ const MenuList = () => {
             }}
           >
             <MdLogout />
-            {trans('MENU_LOGOUT')}
+            <span className="footer__nav-txt">{trans('MENU_LOGOUT')}</span>
           </button>
         )}
       </nav>

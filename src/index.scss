@@ -1,19 +1,4 @@
-$background: #06142e;
-$activeBg: #2c3d5d40;
-$white: #fff;
-$backgroundLight: #232847;
-$border: #1b3358;
-$primaryColor: #9900ff;
-$activeColor: #c56dffc0;
-$tagColor: #dfafff;
-$grayText: #9ca3af;
-$gray: #c5c5c5;
-$grayDark: #ababab37;
-$danger: #eb5757;
-$dangerDark: #b44141;
-
-$font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+@import './_utils';
 
 // 전체 레이아웃
 body {
@@ -54,6 +39,10 @@ body {
     grid-template-columns: repeat(5, minmax(0, 1fr));
     background-color: transparent;
 
+    &-txt {
+      background-color: transparent;
+    }
+
     button {
       display: flex;
       gap: 8px;
@@ -68,6 +57,52 @@ body {
         background: transparent;
       }
     }
+  }
+}
+
+@include xsMobile {
+  .footer {
+    display: none;
+  }
+
+  .layout {
+    border: none;
+  }
+}
+
+@include mobile {
+  .footer {
+    &__nav {
+      &-txt {
+        display: none;
+      }
+
+      button {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .layout {
+    border: none;
+  }
+}
+
+@include tablet {
+  .footer {
+    &__nav {
+      &-txt {
+        display: none;
+      }
+
+      button {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .layout {
+    border: none;
   }
 }
 
