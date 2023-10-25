@@ -1,3 +1,4 @@
+import { languageState } from 'atom';
 import PostBox from 'components/post/PostBox';
 import AuthContext from 'context/AuthContext';
 import {
@@ -11,6 +12,7 @@ import { db } from 'firebaseApp';
 import { PostProps } from 'pages/home';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 
 const PROFILE_DEFULT_URL = '/profile.png';
 
@@ -22,6 +24,12 @@ const ProfilePage = () => {
   const [likePosts, setLikePosts] = useState<PostProps[]>([]);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const [language, setLanguage] = useRecoilState(languageState);
+
+  const onClickLanguage = () => {
+    setLanguage(language === 'ko' ? 'en' : 'ko');
+    localStorage.setItem('language', language === 'ko' ? 'en' : 'ko');
+  };
 
   useEffect(() => {
     if (user) {
@@ -53,7 +61,7 @@ const ProfilePage = () => {
         setLikePosts(dataObj as PostProps[]);
       });
     }
-  });
+  }, [user]);
 
   return (
     <>
@@ -69,15 +77,24 @@ const ProfilePage = () => {
             width={100}
             height={100}
           />
-          <button
-            type="button"
-            className="profile__btn"
-            onClick={() => {
-              navigate('/profile/edit');
-            }}
-          >
-            프로필 수정
-          </button>
+          <div className="profile__flex">
+            <button
+              type="button"
+              className="profile__btn"
+              onClick={() => {
+                navigate('/profile/edit');
+              }}
+            >
+              프로필 수정
+            </button>
+            <button
+              type="button"
+              className="profile__btn--language"
+              onClick={onClickLanguage}
+            >
+              {language === 'ko' ? '한국어' : 'English'}
+            </button>
+          </div>
         </div>
         <div className="profile__text">
           <div className="profile__name">{user?.displayName || '사용자'}님</div>

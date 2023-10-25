@@ -19,7 +19,6 @@ const ProfileEditPage = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const STORAGE_DOWNLOAD_URL_STR = 'https://firebasestorage.googleapis.com';
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +42,7 @@ const ProfileEditPage = () => {
   const handleDeleteImage = () => {
     setImageUrl(null);
   };
-  console.log(user);
+
   const onSubmit = async (e: any) => {
     e.preventDefault();
     let key = `${user?.uid}/${uuidv4()}`;
