@@ -1,7 +1,7 @@
 $background: #06142e;
 $activeBg: #2c3d5d40;
 $white: #fff;
-$backgroundLight: #232847;
+$backgroundLight: #d6dbff;
 $border: #1b3358;
 $primaryColor: #9900ff;
 $activeColor: #c56dffc0;
@@ -13,7 +13,7 @@ $danger: #eb5757;
 $dangerDark: #b44141;
 
 $font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
 // breakpoints
 $mobile: 360px;
@@ -22,25 +22,25 @@ $desktop: 1024px;
 
 // media query mixin
 @mixin xsMobile {
-  @media (max-width: #{$mobile - 1px}) {
-    @content;
-  }
+	@media (max-width: #{$mobile - 1px}) {
+		@content;
+	}
 }
 
 @mixin mobile {
-  @media (min-width: $mobile) and (max-width: #{$tablet - 1px}) {
-    @content;
-  }
+	@media (min-width: $mobile) and (max-width: #{$tablet - 1px}) {
+		@content;
+	}
 }
 
 @mixin tablet {
-  @media (min-width: $tablet) and (max-width: #{$desktop - 1px}) {
-    @content;
-  }
+	@media (min-width: $tablet) and (max-width: #{$desktop - 1px}) {
+		@content;
+	}
 }
 
 @mixin desktop {
-  @media (min-width: $desktop) {
-    @content;
-  }
+	@media (min-width: $desktop) {
+		@content;
+	}
 }

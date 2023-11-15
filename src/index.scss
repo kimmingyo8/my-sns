@@ -2,588 +2,597 @@
 
 // 전체 레이아웃
 body {
-  margin: 0;
-  font-family: $font;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: $font;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow: hidden;
 }
 
 * {
-  background-color: $background;
-  color: $white;
+	color: $white;
+}
+
+#root {
+	height: 100vh;
+	background-color: $backgroundLight;
 }
 
 .layout {
-  max-width: 600px;
-  min-height: 100vh;
-  margin: 0 auto;
-  position: relative;
-  border-left: 1px solid $border;
-  border-right: 1px solid $border;
+	background-color: $background;
+	color: $white;
+	box-shadow: 3px 1px 80px 2px #000000;
+	max-width: 600px;
+	height: 100vh;
+	overflow: scroll;
+	margin: 0 auto;
+	position: relative;
+	border-left: 1px solid $border;
+	border-right: 1px solid $border;
 }
 
 .footer {
-  position: fixed;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  z-index: 10;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: transparent;
-  color: $white;
+	position: fixed;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 10;
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+	background-color: transparent;
+	color: $white;
 
-  &__nav {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    background-color: transparent;
+	&__nav {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		background-color: transparent;
 
-    &-txt {
-      background-color: transparent;
-    }
+		&-txt {
+			background-color: transparent;
+		}
 
-    button {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      align-items: center;
-      font-size: 15px;
-      background-color: transparent;
-      padding: 16px 0;
-      backdrop-filter: blur(10px);
+		button {
+			display: flex;
+			gap: 8px;
+			justify-content: center;
+			align-items: center;
+			font-size: 15px;
+			background-color: transparent;
+			padding: 16px 0;
+			backdrop-filter: blur(10px);
 
-      svg {
-        background: transparent;
-      }
-    }
-  }
+			svg {
+				background: transparent;
+			}
+		}
+	}
 }
 
 @include xsMobile {
-  .footer {
-    display: none;
-  }
+	.footer {
+		display: none;
+	}
 
-  .layout {
-    border: none;
-  }
+	.layout {
+		border: none;
+	}
 }
 
 @include mobile {
-  .footer {
-    &__nav {
-      &-txt {
-        display: none;
-      }
+	.footer {
+		&__nav {
+			&-txt {
+				display: none;
+			}
 
-      button {
-        font-size: 20px;
-      }
-    }
-  }
+			button {
+				font-size: 20px;
+			}
+		}
+	}
 
-  .layout {
-    border: none;
-  }
+	.layout {
+		border: none;
+	}
 }
 
 @include tablet {
-  .footer {
-    &__nav {
-      &-txt {
-        display: none;
-      }
+	.footer {
+		&__nav {
+			&-txt {
+				display: none;
+			}
 
-      button {
-        font-size: 24px;
-      }
-    }
-  }
+			button {
+				font-size: 24px;
+			}
+		}
+	}
 
-  .layout {
-    border: none;
-  }
+	.layout {
+		border: none;
+	}
 }
 
 .button {
-  padding: 0.2rem 0.8rem;
-  font-size: 12px;
-  line-height: 1.2;
-  font-weight: 600;
-  border-radius: 999px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	padding: 0.2rem 0.8rem;
+	font-size: 12px;
+	line-height: 1.2;
+	font-weight: 600;
+	border-radius: 999px;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 
-  &:disabled {
-    opacity: 0.5;
-  }
+	&:disabled {
+		opacity: 0.5;
+	}
 }
 
 .transparent {
-  background-color: transparent;
-  backdrop-filter: blur(10px);
+	background-color: transparent;
+	backdrop-filter: blur(10px);
 }
 
 .sticky {
-  width: 100%;
-  position: sticky;
-  max-width: 600px;
-  margin: 0 auto;
-  top: 0;
+	width: 100%;
+	position: sticky;
+	max-width: 600px;
+	margin: 0 auto;
+	top: 0;
 }
 
 // -------- home ---------
 .home {
-  @extend .transparent;
-  @extend .sticky;
+	@extend .transparent;
+	@extend .sticky;
 
-  &__search {
-    padding: 16px 26px;
-    margin-top: 12px;
-    margin-bottom: 12px;
-    width: calc(100% - 120px);
-    background-color: $backgroundLight;
-    border-radius: 30px;
-    font-family: $font;
-    font-size: 16px;
+	&__search {
+		padding: 16px 26px;
+		margin-top: 12px;
+		margin-bottom: 12px;
+		width: calc(100% - 120px);
+		background-color: $backgroundLight;
+		border-radius: 30px;
+		font-family: $font;
+		font-size: 16px;
 
-    &:focus {
-      border: 1px solid $primaryColor;
-      background-color: $activeBg;
-    }
+		&:focus {
+			border: 1px solid $primaryColor;
+			background-color: $activeBg;
+		}
 
-    &-div {
-      display: flex;
-      justify-content: center;
-    }
-  }
+		&-div {
+			display: flex;
+			justify-content: center;
+		}
+	}
 
-  &__title {
-    @extend .transparent;
-    width: 90%;
-    padding: 16px;
-    font-weight: 700;
-    font-size: 26px;
-  }
+	&__title {
+		@extend .transparent;
+		width: 90%;
+		padding: 16px;
+		font-weight: 700;
+		font-size: 26px;
+	}
 
-  &__tabs {
-    @extend .transparent;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-bottom: 12px;
-  }
+	&__tabs {
+		@extend .transparent;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		margin-bottom: 12px;
+	}
 
-  &__tab {
-    text-align: center;
-    font-weight: 500;
-    padding: 16px;
-    font-size: 16px;
-    cursor: pointer;
+	&__tab {
+		text-align: center;
+		font-weight: 500;
+		padding: 16px;
+		font-size: 16px;
+		cursor: pointer;
 
-    &--active {
-      font-weight: 700;
-      border-bottom: 2px solid $activeColor;
-    }
+		&--active {
+			font-weight: 700;
+			border-bottom: 2px solid $activeColor;
+		}
 
-    &:hover,
-    &:focus {
-      background-color: $activeBg;
-    }
-  }
+		&:hover,
+		&:focus {
+			background-color: $activeBg;
+		}
+	}
 }
 
 .post-form {
-  &__profile {
-    padding: 32px;
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
+	&__profile {
+		padding: 32px;
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
 
-    .post-form__input {
-      border-bottom: 1px solid $gray;
-      padding: 8px 2px;
-      font-size: 16px;
-      width: 300px;
-      margin-bottom: 20px;
+		.post-form__input {
+			border-bottom: 1px solid $gray;
+			padding: 8px 2px;
+			font-size: 16px;
+			width: 300px;
+			margin-bottom: 20px;
 
-      &:active,
-      &:focus {
-        border-bottom: 1px solid $white;
-      }
-    }
-  }
+			&:active,
+			&:focus {
+				border-bottom: 1px solid $white;
+			}
+		}
+	}
 
-  &__submit-area {
-    padding: 4px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+	&__submit-area {
+		padding: 4px 32px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 
-  &__image-area {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+	&__image-area {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
 
-  &__attachment {
-    display: flex;
-    align-items: end;
-    gap: 16px;
-  }
+	&__attachment {
+		display: flex;
+		align-items: end;
+		gap: 16px;
+	}
 
-  &__clear-btn {
-    @extend .button;
-    padding: 0.2rem 0.8rem;
-    background-color: $danger;
+	&__clear-btn {
+		@extend .button;
+		padding: 0.2rem 0.8rem;
+		background-color: $danger;
 
-    &:hover {
-      background-color: $dangerDark;
-    }
-  }
+		&:hover {
+			background-color: $dangerDark;
+		}
+	}
 
-  &__hashtags {
-    padding: 16px;
-    padding-top: 0;
-    border-bottom: 1px solid $border;
+	&__hashtags {
+		padding: 16px;
+		padding-top: 0;
+		border-bottom: 1px solid $border;
 
-    &-tag {
-      font-size: 14px;
-      border: 1px solid $tagColor;
-      color: $tagColor;
-      line-height: 15px;
-      border-radius: 14px;
-      padding: 4px 8px;
-      margin-right: 8px;
+		&-tag {
+			font-size: 14px;
+			border: 1px solid $tagColor;
+			color: $tagColor;
+			line-height: 15px;
+			border-radius: 14px;
+			padding: 4px 8px;
+			margin-right: 8px;
 
-      &:hover {
-        color: $activeColor;
-        border: 1px solid $activeColor;
-      }
-    }
+			&:hover {
+				color: $activeColor;
+				border: 1px solid $activeColor;
+			}
+		}
 
-    &-outputs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 1px;
-      align-items: center;
-      margin: 16px 0;
-    }
-  }
+		&-outputs {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px 1px;
+			align-items: center;
+			margin: 16px 0;
+		}
+	}
 
-  &__input {
-    font-family: $font;
-    padding: 8px;
-    margin-top: 8px;
-    width: calc(100% - 32px);
-  }
+	&__input {
+		font-family: $font;
+		padding: 8px;
+		margin-top: 8px;
+		width: calc(100% - 32px);
+	}
 
-  &__textarea {
-    min-height: 120px;
-    padding: 16px;
-    width: calc(100% - 32px);
-    font-size: 20px;
-    border-bottom: 1px solid $border;
-    &::placeholder {
-      color: $grayText;
-    }
-  }
-  &__submit {
-    display: flex;
-    padding: 0.75rem 1rem;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid $border;
+	&__textarea {
+		min-height: 120px;
+		padding: 16px;
+		width: calc(100% - 32px);
+		font-size: 20px;
+		border-bottom: 1px solid $border;
+		&::placeholder {
+			color: $grayText;
+		}
+	}
+	&__submit {
+		display: flex;
+		padding: 0.75rem 1rem;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: 1px solid $border;
 
-    .post-form__file {
-      display: flex;
-      padding: 0 1rem;
-      flex-direction: column;
-      cursor: pointer;
-    }
-  }
-  &__submit-btn {
-    @extend .button;
-    padding: 0.5rem 1rem;
-    background-color: $primaryColor;
-  }
+		.post-form__file {
+			display: flex;
+			padding: 0 1rem;
+			flex-direction: column;
+			cursor: pointer;
+		}
+	}
+	&__submit-btn {
+		@extend .button;
+		padding: 0.5rem 1rem;
+		background-color: $primaryColor;
+	}
 }
 
 // ----- post -------
 .post {
-  padding-bottom: 40px;
+	padding-bottom: 40px;
 
-  &__image-div {
-    padding: 0 16px;
-  }
+	&__image-div {
+		padding: 0 16px;
+	}
 
-  &__header {
-    button {
-      border: none;
-      padding: 16px;
-    }
+	&__header {
+		button {
+			border: none;
+			padding: 16px;
+		}
 
-    &-btn {
-      width: 20px;
-      height: 20px;
-    }
-  }
+		&-btn {
+			width: 20px;
+			height: 20px;
+		}
+	}
 
-  &__profile {
-    display: flex;
-    gap: 4px;
-    align-items: center;
+	&__profile {
+		display: flex;
+		gap: 4px;
+		align-items: center;
 
-    &-email,
-    &-createdAt {
-      font-size: 12px;
-      color: $grayText;
-    }
+		&-email,
+		&-createdAt {
+			font-size: 12px;
+			color: $grayText;
+		}
 
-    &-img,
-    &-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-  }
+		&-img,
+		&-icon {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			margin-right: 10px;
+		}
+	}
 
-  &__box {
-    padding: 10px 0px;
-    border-bottom: 1px solid $border;
+	&__box {
+		padding: 10px 0px;
+		border-bottom: 1px solid $border;
 
-    &-main {
-      margin: 0 16px;
-    }
+		&-main {
+			margin: 0 16px;
+		}
 
-    &-content {
-      display: block;
-      font-weight: 500;
-      padding: 16px 4px;
-    }
+		&-content {
+			display: block;
+			font-weight: 500;
+			padding: 16px 4px;
+		}
 
-    &-footer {
-      padding: 0 16px;
-      font-size: 14px;
-      display: flex;
-      gap: 8px;
-      flex-direction: row-reverse;
+		&-footer {
+			padding: 0 16px;
+			font-size: 14px;
+			display: flex;
+			gap: 8px;
+			flex-direction: row-reverse;
 
-      button {
-        @extend .button;
-        padding: 0.4rem 1rem;
-        &.post__delete {
-          background-color: $danger;
+			button {
+				@extend .button;
+				padding: 0.4rem 1rem;
+				&.post__delete {
+					background-color: $danger;
 
-          &:hover,
-          &:focus {
-            background-color: $dangerDark;
-          }
-        }
+					&:hover,
+					&:focus {
+						background-color: $dangerDark;
+					}
+				}
 
-        &.post__edit {
-          border: 1px solid $gray;
+				&.post__edit {
+					border: 1px solid $gray;
 
-          a {
-            background-color: transparent;
-          }
+					a {
+						background-color: transparent;
+					}
 
-          &:hover,
-          &:focus {
-            background-color: $grayDark;
-          }
-        }
-        &.post__likes,
-        &.post__comments {
-          display: flex;
-          gap: 4px;
-          &:hover {
-            color: $gray;
-          }
-        }
-      }
-    }
-  }
+					&:hover,
+					&:focus {
+						background-color: $grayDark;
+					}
+				}
+				&.post__likes,
+				&.post__comments {
+					display: flex;
+					gap: 4px;
+					&:hover {
+						color: $gray;
+					}
+				}
+			}
+		}
+	}
 
-  &__following-btn {
-    margin-top: 2px;
-    @extend .button;
-    background-color: $white;
-    color: $primaryColor;
-    margin-left: auto;
+	&__following-btn {
+		margin-top: 2px;
+		@extend .button;
+		background-color: $white;
+		color: $primaryColor;
+		margin-left: auto;
 
-    &:hover {
-      opacity: 0.7;
-    }
-  }
+		&:hover {
+			opacity: 0.7;
+		}
+	}
 
-  &__follow-btn {
-    margin-top: 2px;
-    @extend .button;
-    background-color: $activeColor;
-    color: $white;
-    margin-left: auto;
+	&__follow-btn {
+		margin-top: 2px;
+		@extend .button;
+		background-color: $activeColor;
+		color: $white;
+		margin-left: auto;
 
-    &:hover {
-      opacity: 0.7;
-    }
-  }
+		&:hover {
+			opacity: 0.7;
+		}
+	}
 }
 
 .no-post {
-  padding: 30px;
-  &__text {
-    text-align: center;
-    font-size: 16px;
-    border: 1px solid $grayText;
-    padding: 20px;
-    border-radius: 4px;
-  }
+	padding: 30px;
+	&__text {
+		text-align: center;
+		font-size: 16px;
+		border: 1px solid $grayText;
+		padding: 20px;
+		border-radius: 4px;
+	}
 }
 
 // ----- sign form -------
 .form {
-  padding: 0 20px;
+	padding: 0 20px;
 
-  input {
-    height: 20px;
-    padding: 10px;
-    border-radius: 0.3rem;
-    border: 1px solid $grayText;
-    max-width: 680px;
-    width: 96%;
-  }
+	input {
+		height: 20px;
+		padding: 10px;
+		border-radius: 0.3rem;
+		border: 1px solid $grayText;
+		max-width: 680px;
+		width: 96%;
+	}
 
-  &__block {
-    margin-top: 20px;
-    width: 100%;
-  }
+	&__block {
+		margin-top: 20px;
+		width: 100%;
+	}
 
-  label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 10px;
-    margin-top: 20px;
-  }
+	label {
+		display: block;
+		font-weight: 600;
+		margin-bottom: 10px;
+		margin-top: 20px;
+	}
 
-  &__link {
-    margin-left: 10px;
-    text-decoration: underline;
-    color: $grayText;
-    &:hover {
-      color: $gray;
-    }
-  }
+	&__link {
+		margin-left: 10px;
+		text-decoration: underline;
+		color: $grayText;
+		&:hover {
+			color: $gray;
+		}
+	}
 
-  &__btn--submit {
-    @extend .button;
-    margin-top: 25px;
-    width: 100%;
-    height: 48px;
-    font-weight: 600;
-    padding: 10px;
-    font-size: 18px;
-    color: $white;
-    background-color: $primaryColor;
-    &:hover {
-      background-color: $activeColor;
-    }
-  }
+	&__btn--submit {
+		@extend .button;
+		margin-top: 25px;
+		width: 100%;
+		height: 48px;
+		font-weight: 600;
+		padding: 10px;
+		font-size: 18px;
+		color: $white;
+		background-color: $primaryColor;
+		&:hover {
+			background-color: $activeColor;
+		}
+	}
 
-  &__title {
-    text-align: center;
-    font-size: 24px;
-    font-weight: 700;
-    padding: 20px;
-  }
+	&__title {
+		text-align: center;
+		font-size: 24px;
+		font-weight: 700;
+		padding: 20px;
+	}
 
-  &__error {
-    color: $danger;
-  }
+	&__error {
+		color: $danger;
+	}
 
-  &__btn--google {
-    @extend .form__btn--submit;
-    background-color: $white;
-    color: $primaryColor;
+	&__btn--google {
+		@extend .form__btn--submit;
+		background-color: $white;
+		color: $primaryColor;
 
-    &:hover {
-      background-color: $white;
-      opacity: 0.8;
-    }
-  }
+		&:hover {
+			background-color: $white;
+			opacity: 0.8;
+		}
+	}
 
-  &__btn--github {
-    @extend .form__btn--submit;
-    background-color: black;
-    color: $white;
-    border: 1px solid $border;
+	&__btn--github {
+		@extend .form__btn--submit;
+		background-color: black;
+		color: $white;
+		border: 1px solid $border;
 
-    &:hover {
-      background-color: black;
-      opacity: 0.7;
-    }
-  }
+		&:hover {
+			background-color: black;
+			opacity: 0.7;
+		}
+	}
 }
 
 //프로필 레이아웃
 .profile {
-  display: flex;
-  padding: 0 1rem;
-  margin-top: 2.5rem;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	padding: 0 1rem;
+	margin-top: 2.5rem;
+	justify-content: space-between;
+	align-items: center;
 
-  &__flex {
-    display: flex;
-    gap: 8px;
-  }
+	&__flex {
+		display: flex;
+		gap: 8px;
+	}
 
-  &__image {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-  }
+	&__image {
+		border-radius: 50%;
+		width: 100px;
+		height: 100px;
+	}
 
-  &__btn {
-    @extend .button;
-    padding: 0.8rem 1rem;
-    background-color: $primaryColor;
+	&__btn {
+		@extend .button;
+		padding: 0.8rem 1rem;
+		background-color: $primaryColor;
 
-    &:hover {
-      background-color: $activeColor;
-    }
+		&:hover {
+			background-color: $activeColor;
+		}
 
-    &--language {
-      @extend .button;
-      background-color: $grayDark;
+		&--language {
+			@extend .button;
+			background-color: $grayDark;
 
-      &:hover {
-        opacity: 0.7;
-      }
-    }
-  }
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+	}
 
-  &__text {
-    padding: 0 1rem;
-    margin-top: 20px;
-  }
+	&__text {
+		padding: 0 1rem;
+		margin-top: 20px;
+	}
 
-  &__name {
-    font-size: 18px;
-    line-height: 1.5;
-    color: $white;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
+	&__name {
+		font-size: 18px;
+		line-height: 1.5;
+		color: $white;
+		font-weight: 700;
+		margin-bottom: 4px;
+	}
 
-  &__email {
-    font-size: 14px;
-    color: $grayText;
-    margin-bottom: 20px;
-  }
+	&__email {
+		font-size: 14px;
+		color: $grayText;
+		margin-bottom: 20px;
+	}
 }
 
 .hidden {
-  display: none;
+	display: none;
 }
